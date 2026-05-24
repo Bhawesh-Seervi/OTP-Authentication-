@@ -3,15 +3,15 @@ import random
 from email.mime.text import MIMEText
 
 File_name = "store.txt"
-sender_email = "bhaweshchoudhary21@gmail.com"
-password = "wvlf zqag ywqi nrle"
+sender_email = "youremailaddress/sender emailaddress"
+password = "enter your passkey" 
 
 def send_otp(receiver_email):
     otp = random.randint(100000, 999999)
-    msg = MIMEText(f"Your OTP is: {otp}")
+    msg = MIMEText(f"Your verification OTP is: {otp}")
     msg['Subject'] = "OTP Verification"
-    msg['From'] = sender_email
-    msg['To'] = receiver_email
+    msg['From'] = sender_email  #ur email
+    msg['To'] = receiver_email  
 
     try:
         server = smtplib.SMTP('smtp.gmail.com', 587)
@@ -30,7 +30,7 @@ def register():
         password = input("Enter your password: ")
         otp = send_otp(email)
         try:
-            entered_otp = int(input("Enter the OTP sent to your email: "))
+            entered_otp = int(input("Enter the OTP which is sent to your email: "))
             if entered_otp == otp:
                 file=open(File_name, "a")
                 file.write(f"{email}:{password}\n")
